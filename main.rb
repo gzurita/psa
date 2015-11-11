@@ -6,8 +6,15 @@ get '/' do
   'It works!'
 end
 
+
+# Pages
+
+get '/list_employees' do
+  erb :list_employees
+end
+
+# REST Services
 post '/employees' do
-  logger.info params[:employee]
   e = Employee.create(params[:employee])
   e.save
 end
