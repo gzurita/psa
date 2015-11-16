@@ -7,13 +7,24 @@ get '/' do
 end
 
 
-# Pages
+###### Pages #######
 
 get '/list_employees' do
-  erb :list_employees
+  if Employee.count > 0 
+    @employees = Employee.all
+    erb :list_employees
+  else
+    "No employees"
+  end
 end
 
-# REST Services
+get '/new_employee' do
+  erb :new_employee
+end
+
+
+
+##### REST Services ######
 post '/employees' do
   e = Employee.create(params[:employee])
   e.save
