@@ -7,8 +7,6 @@ get '/' do
 end
 
 
-###### Pages #######
-
 get '/list_employees' do
   if Employee.count > 0 
     @employees = Employee.all
@@ -18,17 +16,24 @@ get '/list_employees' do
   end
 end
 
+
 get '/new_employee' do
   erb :new_employee
 end
 
 
-
-##### REST Services ######
 post '/employees' do
   e = Employee.create(params[:employee])
   e.save
+  redirect to '/list_employees'
 end
+
+put 'employee/:id' do
+  e = Employee.get(params[:id])
+  e.update(params[:employee])
+  redirect to '/list_employees'
+end
+
 
 get '/employees' do
   if Employee.count > 0 
@@ -37,6 +42,13 @@ get '/employees' do
     "No employees"
   end
 end
+
+
+get '/employee/:id' do
+  e = Employee.get(params[:id])
+  erb :edit_employee
+end
+
 
 delete '/employee/:id' do
   e = Employee.get(params[:id])
