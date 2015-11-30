@@ -1,7 +1,6 @@
-# A sample Gemfile
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-gem 'sinatra'
+gem 'sinatra', '~> 1.4', '>= 1.4.6'
 gem 'sinatra-contrib', '~> 1.4', '>= 1.4.6'
 gem 'dm-core', '~> 1.2', '>= 1.2.1'
 gem 'dm-migrations', '~> 1.2'
