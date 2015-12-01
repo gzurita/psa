@@ -3,19 +3,25 @@ require 'sinatra/reloader' if development?
 require './employee'
 
 get '/list_employees' do
-  if Employee.count > 0 
-    @employees = Employee.all
-    erb :list_employees
-  else
-    "No employees"
+  @employees = Employee.all
+  erb :list_employees
+end
+
+get '/new_employee' do
+  @employee = Employee.new
+  erb :new_employee do 
+    erb :form_employee
   end
 end
 
-
-get '/new_employee' do
-  erb :new_employee
+post '/new_employee' do
+  logger.info params[:employee]
+  e = Employee.new
+  e.first_name = params[:employee][:first_name]
+  e.last_name = params[:employee][:last_name]
+  e.save
+  redirect to '/list_employees'
 end
-
 
 post '/employees' do
   e = Employee.create(params[:employee])
