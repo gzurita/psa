@@ -23,10 +23,11 @@ post '/new_employee' do
   redirect to '/list_employees'
 end
 
-post '/employees' do
-  e = Employee.create(params[:employee])
-  e.save
-  redirect to '/list_employees'
+get '/employees/:id' do
+  @employee = Employee.get(params[:id])
+  erb :edit_employee do
+    erb :form_employee
+  end
 end
 
 put '/employees/:id' do
@@ -34,6 +35,14 @@ put '/employees/:id' do
   e.update(params[:employee])
   redirect to '/list_employees'
 end
+
+post '/employees' do
+  e = Employee.create(params[:employee])
+  e.save
+  redirect to '/list_employees'
+end
+
+
 
 
 get '/delete_employee/:id' do
@@ -47,12 +56,6 @@ get '/employees' do
   else
     "No employees"
   end
-end
-
-
-get '/employees/:id' do
-  @employee = Employee.get(params[:id])
-  erb :edit_employee
 end
 
 

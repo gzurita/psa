@@ -1,0 +1,7 @@
+{
+  "name": "psa",
+  "version": "1.0.0",
+  "dependencies": {
+    "bootbox": "^4.4.0"
+  }
+}

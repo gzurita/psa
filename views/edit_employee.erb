@@ -2,16 +2,9 @@
 
 <div class="container">
 <form role="form" action="/employees/<%= params[:id] %>" method="post">
-  <div class="form-group">
+  <input type="hidden" name="_method" value="put">
+  <%= yield %>  
     
-    <label for="employee[first_name]">First name:</label>
-    <input type="text" class="form-control" name="employee[first_name]" value="<%= @employee.first_name %>">
-    <input type="hidden" name="_method" value="put">
-  </div>
-  <div class="form-group">
-    <label for="employee[last_name]">Last name:</label>
-    <input type="text" class="form-control" name="employee[last_name]" value="<%= @employee.last_name %>">
-  </div>
   <button type="submit" class="btn btn-primary">Submit</button>
   <button type="button" class="btn btn-default" onclick="window.location.href = '/list_employees';">Go back</button>
 </form>
